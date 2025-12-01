@@ -17,7 +17,6 @@ class TaskController extends Controller
      */
     public function list()
     {
-        
         // 1Page辺りの表示アイテム数を設定
         $per_page = 2;
         
@@ -27,18 +26,27 @@ class TaskController extends Controller
                          ->orderBy('period')
                          ->orderBy('created_at')
                          ->paginate($per_page);
-                        // ->get();
-        /*
-        $sql = TaskModel::where('user_id', Auth::id())
-                        ->orderBy('priority', 'DESC')
-                        ->orderBy('period')
-                        ->orderBy('created_at')
-                        ->toSql();
-        //echo "<pre>\n"; var_dump($sql, $list); exit;
-        var_dump($sql);
-        */
-        
+
         return view('task.list', ['list' => $list]);
+    }
+
+    /**
+     * タスクの詳細閲覧
+     */
+    public function detail($task_id)
+    {
+        // task_idのレコードを取得する
+        $task = TaskModel::find($task_id);
+        if ($task === null) {
+            return redirect('/task/list');
+        }
+        // 本人以外のタスクならNGとする
+        if ($task->user_id !== Auth::id()) {
+            return redirect('/task/list');
+        }
+
+        // テンプレートに「取得したレコード」の情報を渡す
+        return view('task.detail', ['task' => $task]);
     }
 
     /**
@@ -48,10 +56,6 @@ class TaskController extends Controller
     {
         // validate済みのデータの取得
         $datum = $request->validated();
-        //
-        //$user = Auth::user();
-        //$id = Auth::id();
-        //var_dump($datum, $user, $id); exit;
 
         // user_id の追加
         $datum['user_id'] = Auth::id();
@@ -59,9 +63,7 @@ class TaskController extends Controller
         // テーブルへのINSERT
         try {
             $r = TaskModel::create($datum);
-            // var_dump($r); exit;
         } catch(\Throwable $e) {
-            // XXX 本当はログに書く等の処理をする。今回は一端「出力する」だけ
             echo $e->getMessage();
             exit;
         }
@@ -71,6 +73,5 @@ class TaskController extends Controller
 
         // リダイレクト
         return redirect('/task/list');
-
     }
 }
