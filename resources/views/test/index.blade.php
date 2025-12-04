@@ -24,7 +24,7 @@
     email：<input name="email" value="{{ old('email') }}"><br>
     パスワード：<input name="password" type="password"><br>
     <button type="submit">ログインする</button><br>
-    <a href="{{ route('user.register.form') }}">会員登録はこちら</a>
+    <a href="{{ route('user.register.form') }}">会員登録</a>
 </form>
 
 @endsection

@@ -37,24 +37,31 @@
             <button>タスクを登録する</button>
         </form>
 
-        <h1>タスクの一覧</h1>
-        <a href="/task/csv/download">CSVダウンロード</a><br>
-        <a href="/completed_tasks/list">完了タスク一覧</a><br>
-        <table border="1">
-        @foreach ($list as $task)
-        <tr>
-            <td>{{ $task->name }}
-            <td>{{ $task->period }}
-            <td>{{ $task->getPriorityString() }}
-            <td><a href="{{ route('detail', ['task_id' => $task->id]) }}">詳細閲覧</a>
-            <td><a href="{{ route('edit', ['task_id' => $task->id]) }}">編集</a>
-            <td>
-                <form action="{{ route('complete', ['task_id' => $task->id]) }}" method="post">
-                     @csrf 
-                     <button onclick='return confirm("このタスクを「完了」にします。よろしいですか？");' >完了</button>
-                </form>
-        @endforeach
-        </table>
+<h1>タスクの一覧</h1>
+<a href="/task/csv/download">CSVダウンロード</a><br>
+<a href="/completed_tasks/list">完了タスク一覧</a><br>
+<table border="1">
+    <tr>
+        <th>タスク名</th>
+        <th>期限</th>
+        <th>重要度</th>
+    </tr>
+    @foreach ($list as $task)
+    <tr>
+        <td>{{ $task->name }}</td>
+        <td>{{ $task->period }}</td>
+        <td>{{ $task->getPriorityString() }}</td>
+        <td><a href="{{ route('detail', ['task_id' => $task->id]) }}">詳細閲覧</a></td>
+        <td><a href="{{ route('edit', ['task_id' => $task->id]) }}">編集</a></td>
+        <td>
+            <form action="{{ route('complete', ['task_id' => $task->id]) }}" method="post">
+                 @csrf 
+                 <button onclick='return confirm("このタスクを「完了」にします。よろしいですか？");' >完了</button>
+            </form>
+        </td>
+    </tr>
+    @endforeach
+</table>
         <!-- ページネーション -->
         {{-- {{ $list->links() }} --}}
         現在 {{ $list->currentPage() }} ページ目<br>
