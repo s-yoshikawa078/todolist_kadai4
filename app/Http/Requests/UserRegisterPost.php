@@ -32,13 +32,13 @@ class UserRegisterPost extends FormRequest
     public function messages(): array
     {
         return [
-            'name.required' => '名前は必須です',
+            'name.required' => 'The name field is required.',
             'name.max' => '名前は128文字以内で入力してください',
-            'email.required' => 'メールアドレスは必須です',
+            'email.required' => 'The email field is required.',
             'email.email' => '正しいメールアドレス形式で入力してください',
             'email.max' => 'メールアドレスは254文字以内で入力してください',
             'email.unique' => 'このメールアドレスは既に登録されています',
-            'password.required' => 'パスワードは必須です',
+            'password.required' => 'The password field is required.',
             'password.max' => 'パスワードは72文字以内で入力してください',
         ];
     }

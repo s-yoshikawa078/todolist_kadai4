@@ -28,6 +28,6 @@ class UserController extends Controller
         User::create($datum);
 
         // 登録完了後はトップページへリダイレクト
-        return redirect()->route('front.index')->with('status', '登録されました');
+        return redirect()->route('front.index')->with('status', 'ユーザを登録しました！！');
     }
 }
