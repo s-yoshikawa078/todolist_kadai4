@@ -1,7 +1,7 @@
 @extends('layout')
 
 {{-- タイトル --}}
-@section('title')(詳細画面)@endsection
+@section('title', '完了タスク一覧')
 
 {{-- メインコンテンツ --}}
 @section('contents')

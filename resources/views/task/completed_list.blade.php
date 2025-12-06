@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', '(完了タスク一覧)')
+@section('title', '完了タスク一覧')
 
 @section('contents')
     <h1>完了タスクの一覧</h1>
