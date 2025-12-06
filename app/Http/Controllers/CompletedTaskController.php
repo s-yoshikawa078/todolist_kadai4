@@ -17,7 +17,7 @@ class CompletedTaskController extends Controller
         $user_id = \Auth::id();
 
         $list = CompletedTaskModel::where('user_id', $user_id)
-                                  ->orderBy('id', 'desc')
+                                  ->orderBy('id', 'asc')
                                   ->paginate(10);
 
         return view('task.completed_list', [

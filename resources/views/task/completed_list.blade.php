@@ -5,9 +5,7 @@
 @section('contents')
     <h1>完了タスクの一覧</h1>
 
-    <div style="margin-bottom: 20px;">
-        <a href="/task/list">タスク一覧に戻る</a>
-    </div>
+    <a href="/task/list">タスク一覧に戻る</a>
 
     <table border="1">
         <tr>

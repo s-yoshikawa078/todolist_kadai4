@@ -4,8 +4,8 @@
 @section('contents')
         <h1>ログイン</h1>
         <form action="/login" method="post">
-            email：<input type="text" name="email"><br>
-            パスワード：<input type="password" name="password"><br>
+            email:<input type="text" name="email"><br>
+            パスワード:<input type="password" name="password"><br>
             <button>ログイン</button>
         </form>
 @endsection      
